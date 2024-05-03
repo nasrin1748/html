@@ -1,16 +1,45 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<script>
-var sound = new Audio();
-sound.src = "https://ccrma.stanford.edu/~jos/mp3/pno-cs.mp3";
-function PlaySound() {
-    sound.play();
-}
-</script>
+    <title>Rapid Field</title>
+
+    <!-- Recommended meta tags -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+
+    <!-- PyScript CSS -->
+    <link rel="stylesheet" href="https://pyscript.net/releases/2024.4.1/core.css">
+
+    <!-- This script tag bootstraps PyScript -->
+    <script type="module" src="https://pyscript.net/releases/2024.4.1/core.js"></script>
 </head>
 <body>
-<audio id="sound"> </audio>
-<button onclick="PlaySound()"> Danger </button>
-</body>
+    <textarea id="input1" name="html" rows="20" cols="200"></textarea>
+    <button id="run">Run</button>
+<button id="clearTerm">Click to Clear</button>  
+    
+<script type="py" terminal>
+from pyscript import when, display,document
+    
+@when("click","#clearTerm")    
+def clearTerm(evt):
+    terminal_element = document.querySelector("script[type='py'][terminal]")
+    terminal_element.terminal.clear() 
+
+@when("click", "#run")
+def click_handler(event):
+    #exec(open("main.py").read())
+    f = document.getElementById("input1").value
+    #print(type(f))
+    #print(f)
+    exec(f)
+    #display(exec(f))
+    #print(exec(f))
+    #f = open('main.py', 'r')
+    #file_contents = f.read()
+    #print(file_contents)
+    #print(eval(f))
+    #print(eval(print("hello")))
+    #f.close()
+</script>    
 </html>
